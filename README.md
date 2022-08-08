@@ -6,12 +6,18 @@ This is the most up-to-date, continuously improved document to answer, or refere
 ## About Bürokratt
 _TO DO_
 
-## Installation guides for Bürokratt's chat-related services
+## Glossary
 _TO DO_
 
-## Architecture
+## Technical onboarding
+_Architecture Design Records (TO DO)_
+
 _Business architecture (TO DO)_
 
 _Technical architecture (TO DO)_
 
 _Technical stack (TO DO)_
+
+## Installation guides
+### Bürokratt's chat-related services
+_TO DO_
