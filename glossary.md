@@ -1,21 +1,21 @@
-**Administrative User** – Bürokratt back-office user
+`Administrative User` – Bürokratt back-office user
 
-**End User** – lõppkasutaja, kodanik (citizen)
+`End User` – End user/citizen
 
 `Bürokratt` - all automated functionalities without human interference
 
-`CSA (Customer Support Agent)` – nõustaja/teenindaja
+`CSA` – Customer Support Agent
 
-`Chatbot Trainer` – chatboti treener
+`Chatbot Trainer` – Chatbot trainer
 
-Analyst – analüütik
+`Analyst` – Analyst
 
-Administrator – administrator
+`Administrator` – Administrator
 
-Service Manager – teenuse haldur
+`Service Manager` – Service Manager
 
-Architect – arhitekt
+`Architect` – Architect
 
-Developer – arendaja
+`Developer` – Developer
 
-Interested Party – huvitatud (kolmas) osapool
+`Interested Party` – Interested 3rd Party
