@@ -1,3 +1,5 @@
+**USER ROLES**
+
 `Administrative User` – Bürokratt back-office user
 
 `End User` – End user/citizen
@@ -19,3 +21,7 @@
 `Developer` – Developer
 
 `Interested Party` – Interested 3rd Party
+
+**TECHNICAL**
+
+`GUI` - [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface)
