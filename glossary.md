@@ -2,7 +2,7 @@
 
 **End User** – lõppkasutaja, kodanik (citizen)
 
-Bürokratt -
+`Bürokratt` - all automated functionalities without human interference
 
 `CSA (Customer Support Agent)` – nõustaja/teenindaja
 
