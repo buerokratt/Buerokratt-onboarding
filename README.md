@@ -7,7 +7,7 @@ This is the most up-to-date, continuously improved document to answer, or refere
 _TO DO_
 
 ## Glossary
-_TO DO_
+[Bürokratt glossary](glossary.md)
 
 ## Technical onboarding
 _Architecture Design Records (TO DO)_
