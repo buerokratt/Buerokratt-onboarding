@@ -1,4 +1,4 @@
-**Administrative User** – Bürokrati tagatoa kasutaja (Bürokrat backoffice user)
+**Administrative User** – Bürokratt back-office user
 
 **End User** – lõppkasutaja, kodanik (citizen)
 
