@@ -14,7 +14,7 @@ _TO DO_
 
 ## Rules of engagement
 
-Using GitHub as a project management tool
+[Using GitHub as a project management tool](rules-of-engagement/using-github-as-a-project-management-tool.md)
 
 ## Technical onboarding
 [Architecture Design Records _(in progress)_](architecture-design-records.md)
