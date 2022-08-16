@@ -24,3 +24,7 @@ For Bürokratt, by default, FaaS is provided as a [Ruuter](https://github.com/bu
 Server-sent events have been chosen over [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) due to preferring unidirectional communication instead of bidirectional one until using just text-based communication.
 
 https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+
+## Translations
+
+All translations within GUI (graphical user interface) must be [i18n-compatible](https://www.i18next.com/).
