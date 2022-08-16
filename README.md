@@ -1,7 +1,10 @@
 # Bürokratt Onboarding
 
 ## About this document
-This is the most up-to-date, continuously improved document to answer, or reference to documents answering business-wise and technical questions about Bürokratt.
+
+Intended target of this document are everyone interested in Bürokratt - business owners, product managers, IT architects and developers, etc.
+
+This is the most up-to-date, continuously improved document containing references to everything Bürokratt-related.
 
 ## About Bürokratt
 _TO DO_
