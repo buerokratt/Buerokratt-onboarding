@@ -10,7 +10,7 @@ _TO DO_
 [Bürokratt glossary](glossary.md)
 
 ## Technical onboarding
-_Architecture Design Records (TO DO)_
+[Architecture Design Records _(in progress)_](architecture-design-records.md)
 
 _Business architecture (TO DO)_
 
