@@ -12,6 +12,10 @@ _TO DO_
 ## Glossary
 [Bürokratt glossary](glossary.md)
 
+## Rules of engagement
+
+Using GitHub as a project management tool
+
 ## Technical onboarding
 [Architecture Design Records _(in progress)_](architecture-design-records.md)
 
