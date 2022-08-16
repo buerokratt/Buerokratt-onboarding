@@ -6,6 +6,12 @@ Intended targets of this document are IT architects and developers involved with
 
 This document _will contain_ history of all architectural design decisions, covering both approved and disapproved choices with explanations.
 
+## Authentication
+
+### TIM
+
+For TARA-based authentication (see [GitHub repo](https://e-gov.github.io/TARA-Doku/) and [general information](https://www.ria.ee/en/state-information-system/eid/partners.html)), Bürokratt's custom component [TIM (TARA Integration Module)](https://github.com/buerokratt/TIM) is used.
+
 ## REST services
 
 ### Function as a Service (FaaS)
