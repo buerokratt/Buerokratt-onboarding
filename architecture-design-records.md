@@ -6,6 +6,17 @@ Intended targets of this document are IT architects and developers involved with
 
 This document _will contain_ history of all architectural design decisions, covering both approved and disapproved choices with explanations.
 
+## REST services
+
+### Function as a Service (FaaS)
+
+Custom functions that have potential to be used in more than one service, must be provided in a form of Function as a Service (FaaS).
+
+By FaaS we understand REST-based requests serving just one specific function.
+
+For Bürokratt, by default, FaaS is provided as a [Ruuter](https://github.com/buerokratt/Ruuter) REST endpoint.
+
+
 ## Push technologies
 
 ### Server-sent events instead of WebSockets
