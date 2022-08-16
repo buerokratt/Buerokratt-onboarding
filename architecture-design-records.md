@@ -14,7 +14,9 @@ For TARA-based authentication (see [GitHub repo](https://e-gov.github.io/TARA-Do
 
 ## Database queries
 
-All relational database queries must be [Resql-based](https://github.com/buerokratt/Resql).
+### Resql
+
+All **relational database** queries must be [Resql-based](https://github.com/buerokratt/Resql).
 
 ## REST services
 
