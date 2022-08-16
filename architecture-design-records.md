@@ -12,6 +12,10 @@ This document _will contain_ history of all architectural design decisions, cove
 
 For TARA-based authentication (see [GitHub repo](https://e-gov.github.io/TARA-Doku/) and [general information](https://www.ria.ee/en/state-information-system/eid/partners.html)), Bürokratt's custom component [TIM (TARA Integration Module)](https://github.com/buerokratt/TIM) is used.
 
+## Database queries
+
+All relational database queries must be [Resql-based](https://github.com/buerokratt/Resql).
+
 ## REST services
 
 ### Function as a Service (FaaS)
