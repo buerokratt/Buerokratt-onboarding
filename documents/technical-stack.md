@@ -3,7 +3,7 @@
 # Bürokratt technical stack
 
 ## Ruuter
-_TO DO_
+Ok
 
 ## DMapper
 _TO DO_
