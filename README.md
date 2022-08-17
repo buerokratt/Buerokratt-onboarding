@@ -21,9 +21,9 @@ _TO DO_
 
 _Business architecture (TO DO)_
 
-_Technical architecture (TO DO)_
+_Technical architecture_
 
-_Technical stack (TO DO)_
+[Technical stack (TO DO)](documents/technical-stack.md)
 
 ## Installation guides
 ### Bürokratt's chat-related services
