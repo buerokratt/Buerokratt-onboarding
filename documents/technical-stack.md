@@ -22,4 +22,5 @@ _TO DO_
 
 ## Back-office GUI
 A GUI-based tool for administrating purposes to be used by CSA and administrators
-Chat-widget, is frontend tool to be used for interaction between user and bot/customer service agent
+## Chat-widget
+A frontend tool to be used for interaction between End User and Chatbot / CSA
