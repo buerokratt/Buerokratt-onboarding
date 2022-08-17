@@ -9,7 +9,7 @@ _TO DO_
 _TO DO_
 
 ## TIM
-_TO DO_
+TIM is responsible for authenticated traffic
 
 ## XTR
 _TO DO_
@@ -19,3 +19,8 @@ _TO DO_
 
 ## Turvis
 _TO DO_
+
+## Back-office GUI
+A GUI-based tool for administrating purposes to be used by CSA and administrators
+## Chat-widget
+A frontend tool to be used for interaction between End User and Chatbot / CSA
