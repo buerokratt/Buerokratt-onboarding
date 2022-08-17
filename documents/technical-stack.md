@@ -1,3 +1,5 @@
+> This document is currently in its earliest stages and will be improved significantly in the near future
+
 # Bürokratt technical stack
 
 ## Ruuter
