@@ -20,5 +20,6 @@ _TO DO_
 ## Turvis
 _TO DO_
 
-Customer-service, is backend tool for administrating purposes to be used by customer service agent and admins  
+## Back-office GUI
+A GUI-based tool for administrating purposes to be used by CSA and administrators
 Chat-widget, is frontend tool to be used for interaction between user and bot/customer service agent
