@@ -1,21 +1,11 @@
-> This document is currently in its earliest stages and will be improved significantly in the near future
+# Buerokratt technical stack
+## Describe the individual parts of Buerokratt
 
-# Bürokratt technical stack
-
-## Ruuter
-_TO DO_
-
-## DMapper
-_TO DO_
-
-## TIM
-_TO DO_
-
-## XTR
-_TO DO_
-
-## Resql
-_TO DO_
-
-## Turvis
-_TO DO_
+#### Chatbot-Private-ruuter - 
+#### Chatbot-Public-ruuter - 
+#### DMapper - 
+#### Chat-widget - Interaction between user and bot or admin
+#### Customer-service - Service backoffice for administrative purposes
+#### TIM - Service responsible for authenticated traffic
+#### RESQL - 
+#### Users-db - Service database for storing user information
