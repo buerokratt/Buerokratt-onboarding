@@ -16,6 +16,8 @@ _TO DO_
 
 [Using GitHub as a project management tool](rules-of-engagement/using-github-as-a-project-management-tool.md)
 
+_[Placeholder] Story Points Estimation_
+
 ## Technical onboarding
 [Architecture Design Records _(in progress)_](architecture-design-records.md)
 
