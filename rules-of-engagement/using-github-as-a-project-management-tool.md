@@ -3,6 +3,12 @@
 Bürokratt uses [its GitHub accout](https://github.com/buerokratt) for both [storing source code](https://github.com/orgs/buerokratt/repositories) and [managing projects](https://github.com/orgs/buerokratt/projects?query=is%3Aopen&type=new).
 
 
+## Milestones
+Milestones are goals grouped by business logic.
+
+All milestones must contain GitHub issues.
+
+
 ## Issues
 
 ### User stories
