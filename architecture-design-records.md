@@ -18,6 +18,10 @@ For TARA-based authentication (see [GitHub repo](https://e-gov.github.io/TARA-Do
 
 All **relational database** queries must be [Resql-based](https://github.com/buerokratt/Resql).
 
+## Front-end developments
+
+All front-end developments must contain all sample files within appropriate directories to cover all intended functionalities. For example, if front-end should provide output based on a database query, a sample text file imitating the result of this query must be present. All front-end functionalities expecting input from back-end must exist and fully function purely based on static files without any support from actual back-end components.
+
 ## REST services
 
 ### Function as a Service (FaaS)
