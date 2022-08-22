@@ -29,4 +29,4 @@ _Technical architecture_
 
 ## Installation guides
 ### Bürokratt's chat-related services
-[Installation guides for Bürokratt chat-related services _(in progress)_](https://github.com/buerokratt/Installation-Guides/tree/8-installation-guide-to-start-using-b%C3%BCrokratts-chat-related-services-on-docker)
+[Installation guides for Bürokratt chat-related services _(in progress)_](https://github.com/buerokratt/Installation-Guides/)
