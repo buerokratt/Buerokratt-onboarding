@@ -19,7 +19,7 @@ _TO DO_
 _[Placeholder] Story Points Estimation_
 
 ## Technical onboarding
-[Architecture Design Records _(in progress)_](architecture-design-records.md)
+[Architecture Design Records _(in progress)_](architecture-design-records/README.md)
 
 _Business architecture (TO DO)_
 
