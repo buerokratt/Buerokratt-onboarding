@@ -19,7 +19,7 @@ _TO DO_
 _[Placeholder] Story Points Estimation_
 
 ## Technical onboarding
-Cross-Functional Requirements (CFR)
+[Cross-Functional Requirements (CFR)](cross-functional-requirements/README.md)
 
 [Architecture Design Records _(in progress)_](architecture-design-records/README.md)
 
