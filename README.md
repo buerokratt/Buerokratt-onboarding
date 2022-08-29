@@ -19,6 +19,8 @@ _TO DO_
 _[Placeholder] Story Points Estimation_
 
 ## Technical onboarding
+Cross-Functional Requirements (CFR)
+
 [Architecture Design Records _(in progress)_](architecture-design-records/README.md)
 
 _Business architecture (TO DO)_
