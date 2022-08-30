@@ -32,3 +32,6 @@ _Technical architecture_
 ## Installation guides
 ### Bürokratt's chat-related services
 [Installation guides for Bürokratt chat-related services _(in progress)_](https://github.com/buerokratt/Installation-Guides/)
+
+## User manual
+
