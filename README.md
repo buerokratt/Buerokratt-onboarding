@@ -34,4 +34,4 @@ _Technical architecture_
 [Installation guides for Bürokratt chat-related services _(in progress)_](https://github.com/buerokratt/Installation-Guides/)
 
 ## User manual
-
+https://koodivaramu.eesti.ee/buerokratt/guides/-/blob/main/BYK_Kasutusjuhend.docx
