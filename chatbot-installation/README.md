@@ -3,7 +3,7 @@ vm-Databases, vm-Bykstack
 ### 1. Checking Keys
 Log in vm-Databases
 ```
-ssh -A vm-Databases
+ssh -A username@vm-Databases
 ```
 Check, if other vm-s have access.<br />
 This list, must include keys of other vm-s
@@ -16,7 +16,7 @@ cat .ssh/authorized_keys
 If neccesary key is not added, then to find it.<br />
 Log in vm-Bykstack
 ```
-ssh -A vm-Bykstack
+ssh -A username@vm-Bykstack
 ```
 location of key, that needs to be copied to vm-Databases
 ```
