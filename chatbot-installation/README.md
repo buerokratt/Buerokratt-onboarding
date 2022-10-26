@@ -26,7 +26,7 @@ cd
 cat .ssh/id_byk.pub
 ```
 ### 2. Editing config.txt
-Download config.txt<br />
+Copy config.txt to vm-s<br />
 Add neccesary values. (those are used by script, to make deployment faster)<br />
 Below can be seen example, how config.txt should look like:<br />
 <br />
@@ -58,7 +58,7 @@ copy config.txt in all vm-s
 ```
 scp config.txt username@vm-Databases:~/path/
 ```
-Download scripts and copy to vm-s<br />
+Copy scripts to vm-s<br />
 database_byk_build.sh -> vm-Databases<br />
 byk_build.sh -> vm-Bykstack<br />
 <br />
@@ -80,4 +80,7 @@ chmod +x byk_build.sh
 Run the scripts. NOTE. First run the database_byk_build.sh in vm-Databases, then run byk_build.sh in vm-Bykstack
 ```
 ./database_byk_build.sh
+```
+```
+./byk_build.sh
 ```
