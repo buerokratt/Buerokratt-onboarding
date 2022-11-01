@@ -25,6 +25,7 @@ keytoolOU=$(sed 's/keytoolOU=//g;14q;d' $config)
 keytoolC=$(sed 's/keytoolC=//g;15q;d' $config)
 keytoolpass=$(sed 's/keytoolpass=//g;16q;d' $config)
 dburl=$(sed 's/dburl=//g;17q;d' $config)
+bot_name=$(sed 's/bot_name=//g;23q;d' $config)
 cd $buildpath
 #clone buerokratt repo
 git clone https://github.com/buerokratt/Installation-Guides.git
@@ -121,6 +122,9 @@ if [ $( docker ps -a -f name=users-db | wc -l ) -eq 2 ]; then
   if [ $output == "Up" ]; then
     docker exec users-db bash -c "createdb -O byk -e -U byk byk"
     docker run --network=bykstack riaee/byk-users-db:liquibase20220615 bash -c "sleep 5 && liquibase --url=jdbc:postgresql://$dburl:5433/byk?user=byk --password=$safe_byk_db --changelog-file=/master.yml update"
+    psqlcommand="insert into configuration(key, value) values ('bot_institution_id', '$bot_name');"
+    psqlcommand2='"'$psqlcommand'"'
+    docker run --network=bykstack ubuntu:latest bash -c "apt-get -y update && apt-get -y install postgresql-client && PGPASSWORD=$safe_byk_db psql -d byk -U byk -h users-db -p 5432 -c $psqlcommand2 -c 'CREATE EXTENSION hstore;'"
   else
    echo "users-db exists, but is not Up"
   fi
