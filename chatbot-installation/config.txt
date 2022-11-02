@@ -20,4 +20,5 @@ training_url=
 training_user=
 training_prv_key=
 training_bot_dir=
-bot_name=
+SSH_KEY=
+BOT_DATA_DIR=
