@@ -72,7 +72,7 @@ if [ $( docker ps -a -f name=users-db | wc -l ) -eq 2 ]; then
   output=$( echo ${status} | awk '{ print $7}' )
   echo "$output"
   if [ $output == "Up" ]; then
-    docker exec users-db bash -c "createdb -O byk -e -U byk byk" #ilma creatimata
+    docker exec users-db bash -c "createdb -O byk -e -U byk byk"
     docker run --network=bykstack riaee/byk-users-db:liquibase20220615 bash -c "sleep 5 && liquibase --url=jdbc:postgresql://$dburl:5433/byk?user=byk --password=$safe_byk_db --changelog-file=/master.yml update"
     psqlcommand="insert into configuration(key, value) values ('bot_institution_id', '$bot_name');"
     psqlcommand2='"'$psqlcommand'"'
@@ -90,7 +90,7 @@ if [ $( docker ps -a -f name=tim-postgresql | wc -l ) -eq 2 ]; then
   output=$( echo ${status} | awk '{ print $7}' )
   echo "$output"
   if [ $output == "Up" ]; then
-    docker exec tim-postgresql bash -c "createdb -O tim -e -U tim tim" # ilma creatimata
+    docker exec tim-postgresql bash -c "createdb -O tim -e -U tim tim"
   else
    echo "tim-postgresql exists, but is not Up"
   fi
