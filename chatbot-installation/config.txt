@@ -1,3 +1,4 @@
+domain=buerokratt.ee
 public_ruuter_url=https://ruuter.byk.buerokratt.ee
 private_ruuter_url=https://priv-ruuter.buerokratt.ee
 tim_url=https://TIM_URL
@@ -18,9 +19,9 @@ keytoolOU=
 keytoolC=
 keytoolpass=
 bot_url=http://BOT_IP:5005
-training_url=
-training_user=
-training_prv_key=
+training_host=bottraining
+training_user=bottraining
+training_prv_key=/opt/bykstack/ssh/id_rsa-bottraining # location of the key in your bykstack host
 training_bot_data_dir=
 # not in use currently
 #SSH_KEY=

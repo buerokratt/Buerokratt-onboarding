@@ -50,15 +50,15 @@ backofficompose="$bykstack_dir/docker-compose.yml"
 
 # replace in files placeholders with config values
 sed -i "s|http://BOT_IP:5005|http://$bot_url|g;
-    s|TRAINIG_BOT_PRIVATE_SSH_KEY_PATH|$training_prv_key|g;
-    s|TRAINIG_BOT|$training_url|g;
+    s|TRAINIG_BOT_PRIVATE_SSH_KEY_PATH|/home/ubuntu/.ssh/id_rsa|g;
     s|TRAINING_BOT_USERNAME|$training_user|g;
-    s|TRAINING_DATA_DIRECTORY|$training_bot_data_dir|g" "$publicurls"
+    s|TRAINING_DATA_DIRECTORY|$training_bot_data_dir|g;
+    s|TRAINIG_BOT|$training_host|g" "$publicurls"
 sed -i "s|http://BOT_IP:5005|$bot_url|g;
-    s|TRAINIG_BOT_PRIVATE_SSH_KEY_PATH|$training_prv_key|g;
-    s|TRAINIG_BOT|$training_url|g;
+    s|TRAINIG_BOT_PRIVATE_SSH_KEY_PATH|/home/ubuntu/.ssh/id_rsa|g;
     s|TRAINING_BOT_USERNAME|$training_user|g;
-    s|TRAINING_DATA_DIRECTORY|$training_bot_data_dir|g" "$privateurls"
+    s|TRAINING_DATA_DIRECTORY|$training_bot_data_dir|g;
+    s|TRAINIG_BOT|$training_host|g" "$privateurls"
 sed -i "s|https://ruuter.test.buerokratt.ee|$public_ruuter_url|g;
     s|https://TIM_URL|$tim_url|g;
     s|https://URL_WHERE_TO_WIDGET_IS_INSTALLED|$widget_url|g" "$index"
@@ -72,11 +72,13 @@ sed -i "s|https://RUUTER_URL|$public_ruuter_url|g;
     s|https://PRIV-RUUTER_URL|$private_ruuter_url|g" "$customernginx"
 sed -i "s|\(spring.datasource.password\)=123|\1=$tim_db_password|g;
     s|\(POSTGRES_PASSWORD\)=123|\1=$byk_db_password|g" "$timdockercompose"
-sed -i "s|\(spring.datasource.password\)=123|\1=$tim_db_password|g;
+sed -i "s|\(sessionCookieDomain\)=buerokratt.ee|\1=$domain|g;
+    s|https://buerokratt.ee|$backoffice_url|g;
     s|https://buerokratt.ee|$backoffice_url|g;
     s|https://admin.buerokratt.ee|$widget_url|g;
     s|https://tim.buerokratt.ee|$tim_url|g;
     s|postgresql://tim-postgresql:5432/tim|$tim_db_uri|g;
+    s|\(spring.datasource.password\)=123|\1=$tim_db_password|g;
     s|postgresql://users-db:5433/byk|$byk_db_uri|g;
     s|\(security.oauth2.client.user-authorization-uri\)=https://tara-test.ria.ee/oidc/authorize|\1=$tara_client_user_authorization_uri|g;
     s|\(security.oauth2.client.access-token-uri\)=https://tara-test.ria.ee/oidc/token|\1=$tara_client_access_token_uri|g;
@@ -89,19 +91,21 @@ sed -i "s|\(spring.datasource.password\)=123|\1=$tim_db_password|g;
     s|https://ruuter.byk.buerokratt.ee|$public_ruuter_url|g;
     s|https://priv-ruuter.byk.buerokratt.ee|$private_ruuter_url|g;
     s|https://priv-ruuter.buerokratt.ee|$private_ruuter_url|g;
+    s|- /home/ubuntu/.ssh/id_rsa|- $training_prv_key|g;
     s|\(jwt-integration.signature.issuer\)=byk.buerokratt.ee|\1=$keytoolCN.$keytoolOU.$keytoolC|g;
     s|safe_keystore_password|$keytoolpass|g;
     s|\(password\)=01234|\1=$byk_db_password|g" "$backofficompose"
 
 # tim_keys
 cd "$bykstack_dir/tim"
+tim_container="tim_byk-tim_1"
 if [ -f jwtkeystore.jks ] && [ "$(cat "jwtkeystore.jks")" ]; then
-    echo "jwtkeystore.jks: file exists, skipping creating it in tim-byk-tim-1"
+    echo "jwtkeystore.jks: file exists, skipping creating it in $tim_container"
 else
     dname="'CN=$keytoolCN, OU=$keytoolOU, O=PLACEHOLDER, L=PLACEHOLDER, S=PLACEHOLDER, C=$keytoolC'"
     docker-compose up -d && \
-        docker exec tim-byk-tim-1 bash \-c "keytool -genkeypair -alias jwtsign -keyalg RSA -keysize 2048 -keystore 'jwtkeystore.jks' -validity 3650 -noprompt -dname $dname -storepass $keytoolpass" && \
-        docker cp tim-byk-tim-1:/usr/local/tomcat/jwtkeystore.jks jwtkeystore.jks && \
+        docker exec $tim_container bash \-c "keytool -genkeypair -alias jwtsign -keyalg RSA -keysize 2048 -keystore 'jwtkeystore.jks' -validity 3650 -noprompt -dname $dname -storepass $keytoolpass" && \
+        docker cp $tim_container:/usr/local/tomcat/jwtkeystore.jks jwtkeystore.jks && \
         # sudo chown $username jwtkeystore.jks
         docker-compose down
 fi
