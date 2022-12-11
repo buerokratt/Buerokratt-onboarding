@@ -41,8 +41,10 @@ bykstack_dir="$installationguides_dir/default-setup/backoffice-and-bykstack"
 
 publicurls="$bykstack_dir/ruuter/public.urls.docker.json"
 privateurls="$bykstack_dir/ruuter/private.urls.docker.json"
-index="$bykstack_dir/chat-widget/index.html"
+chatindex="$bykstack_dir/chat-widget/index.html"
 chatnginx="$bykstack_dir/chat-widget/nginx.conf"
+dmapperindex="$bykstack_dir/dmapper/index.html"
+dmappernginx="$bykstack_dir/dmapper/nginx.conf"
 envconfig="$bykstack_dir/customer-support/env-config.js"
 customernginx="$bykstack_dir/customer-support/nginx.conf"
 timdockercompose="$bykstack_dir/tim/docker-compose.yml"
@@ -61,8 +63,12 @@ sed -i "s|http://BOT_IP:5005|$bot_url|g;
     s|TRAINIG_BOT|$training_host|g" "$privateurls"
 sed -i "s|https://ruuter.test.buerokratt.ee|$public_ruuter_url|g;
     s|https://TIM_URL|$tim_url|g;
-    s|https://URL_WHERE_TO_WIDGET_IS_INSTALLED|$widget_url|g" "$index"
+    s|https://URL_WHERE_TO_WIDGET_IS_INSTALLED|$widget_url|g" "$chatindex"
 sed -i "s|https://URL_WHERE_TO_WIDGET_IS_INSTALLED|$widget_url|g" "$chatnginx"
+sed -i "s|https://localhost PUBLIC-RUUTER_URL|$public_ruuter_url|g;
+    s|https://localhost TIM_URL|$tim_url|g;
+    s|https://localhost URL_WHERE_TO_WIDGET_IS_INSTALLED|$widget_url|g" "$dmapperindex"
+sed -i "s|https://localhost FIRST_PAGE_WITH_WIDGET|$widget_url|g" "$dmappernginx"
 sed -i "s|https://PRIVATE_RUUTER_URL|$private_ruuter_url|g;
     s|https://TIM_URL|$tim_url|g;
     s|https://CUSTOMER_SERVICE_URL|$backoffice_url|g" "$envconfig"
