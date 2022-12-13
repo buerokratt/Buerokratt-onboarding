@@ -7,3 +7,4 @@
 - [ ] All developments must pass acceptance tests
 - [ ] All developments must follow the rules for documentation
 - [ ] Deployment
+- [ ] Board statuses
