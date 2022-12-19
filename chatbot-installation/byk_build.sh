@@ -51,7 +51,7 @@ timdockercompose="$bykstack_dir/tim/docker-compose.yml"
 backofficompose="$bykstack_dir/docker-compose.yml"
 
 # replace in files placeholders with config values
-sed -i "s|http://BOT_IP:5005|http://$bot_url|g;
+sed -i "s|http://BOT_IP:5005|$bot_url|g;
     s|TRAINIG_BOT_PRIVATE_SSH_KEY_PATH|/home/ubuntu/.ssh/id_rsa|g;
     s|TRAINING_BOT_USERNAME|$training_user|g;
     s|TRAINING_DATA_DIRECTORY|$training_bot_data_dir|g;
@@ -68,7 +68,8 @@ sed -i "s|https://URL_WHERE_TO_WIDGET_IS_INSTALLED|$widget_url|g" "$chatnginx"
 sed -i "s|https://localhost PUBLIC-RUUTER_URL|$public_ruuter_url|g;
     s|https://localhost TIM_URL|$tim_url|g;
     s|https://localhost URL_WHERE_TO_WIDGET_IS_INSTALLED|$widget_url|g" "$dmapperindex"
-sed -i "s|https://localhost FIRST_PAGE_WITH_WIDGET|$widget_url|g" "$dmappernginx"
+sed -i "s|https://localhost FIRST_PAGE_WITH_WIDGET|$domain|g;
+    s|https://localhost SECOND_PAGE_WITH_WIDGET|$widget_url|g" "$dmappernginx"
 sed -i "s|https://PRIVATE_RUUTER_URL|$private_ruuter_url|g;
     s|https://TIM_URL|$tim_url|g;
     s|https://CUSTOMER_SERVICE_URL|$backoffice_url|g" "$envconfig"
