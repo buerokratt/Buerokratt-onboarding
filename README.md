@@ -1,37 +1,35 @@
-# Bürokratt Onboarding
+## Bürokratt onboarding
 
-## About this document
+### In case you are just wondering
 
-Intended target of this document are everyone interested in Bürokratt - business owners, product managers, IT architects and developers, etc.
+Bürokratt is an initiative by the [Ministry of Economics Affairs and Communications of Estonia](https://www.mkm.ee/) to, in the end, provide all of the Estonian government e-services (about 3,000 of them), plus potentially any of the private sector ones, via both text-based and voice input.
 
-This is the most up-to-date, continuously improved document containing references to everything Bürokratt-related.
+Technical implementation of Bürokratt is provided by the Department of Machine Learning and Language Technology of [Information System Authority of Estonia](https://www.ria.ee/).
 
-## About Bürokratt
-_TO DO_
+### If you want to participate as a developer
 
-## Glossary
-[Bürokratt glossary](glossary.md)
+The first thing to understand is that we strongly believe in **DSL-based developments**. This means that unless you are working with either language technology or developing our core components themselves, you almost never get to write code in Java or other so-called actual programming languages. Instead, you work with YAML, standard SQL queries as text files, [Handlebars DSL](https://handlebarsjs.com/), etc. To better understand the logic behind it, please [read this article](https://medium.com/digiriik/reasons-behind-b%C3%BCrokratt-giving-less-freedom-to-developers-fc04b0751).
 
-## Rules of engagement
+First of all, take a look at our GitHub project at [https://github.com/buerokratt](https://github.com/buerokratt).
 
-[Using GitHub as a project management tool](rules-of-engagement/using-github-as-a-project-management-tool.md)
+**Key repos to take a look at** are (in that order)
 
-_[Placeholder] Story Points Estimation_
+#### https://github.com/buerokratt/Ruuter
 
-## Technical onboarding
-[Cross-Functional Requirements (CFR)](cross-functional-requirements/README.md)
+All of our services are based on Ruuter. Whenever you want to make POST, GET or other requests, it's via Ruuter. The same goes for if/else statements, creating and using templated services, etc. Go through [Ruuter's guide](https://github.com/buerokratt/Ruuter/blob/main/samples/GUIDE.md) and definitely create your own [Ruuter-based mock services](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) to get the first grip of Ruuter.
 
-[Architecture Design Records _(in progress)_](architecture-design-records/README.md)
+Reverse proxy
 
-_Business architecture (TO DO)_
+1. https://github.com/buerokratt/Resql
+   
+2. [https://handlebarsjs.com/](https://handlebarsjs.com/)
+   
+3. [https://github.com/buerokratt/TIM](https://github.com/buerokratt/TIM)
 
-_Technical architecture_
+### If you want to participate as a language technologist
 
-[Technical stack (TO DO)](documents/technical-stack.md)
+### If you want to start using Bürokratt as an institution
 
-## Installation guides
-### Bürokratt's chat-related services
-[Installation guides for Bürokratt chat-related services _(in progress)_](https://github.com/buerokratt/Installation-Guides/)
+### If you're asked to deploy Bürokratt for your client
 
-## User manual
-https://koodivaramu.eesti.ee/buerokratt/guides/-/blob/main/BYK_Kasutusjuhend.docx
+### Warranty and responsibilities
