@@ -13,7 +13,7 @@ Technical implementation of Bürokratt is provided by the Department of Machine 
 
 Bürokratt is being developed on the basis of open development. You can [read more about it from here](https://medium.com/digiriik/why-b%C3%BCrokratt-chose-the-model-of-open-development-fd20d32a04b). In short - no private repos, no private planning, no private nothing. The code committed by developers ends up straight at public GitHub repos and the moment we see it, everyone else sees it as well.
 
-Everything starts from https://github.com/buerokratt. All of project can be found from https://github.com/orgs/buerokratt/projects and repos from https://github.com/orgs/buerokratt/repositories.
+Everything starts from https://github.com/buerokratt. All of our project can be found from https://github.com/orgs/buerokratt/projects and repos from https://github.com/orgs/buerokratt/repositories.
 
 ### Procurements and partners
 
@@ -43,7 +43,7 @@ The first thing to understand is that we strongly believe in DSL-based developme
 
 https://github.com/buerokratt/Ruuter
 
-All of our services are based on Ruuter. Whenever you want to make POST, GET or other requests, it's done via Ruuter. The same goes for if/else statements, creating and using templated services, etc. Ruuter also acts as a reverse proxy to mediate all traffic between any of the components. Go through the [guide](https://github.com/buerokratt/Ruuter/blob/main/samples/GUIDE.md) and definitely create your own [Ruuter-based mock services](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) to get the first grip.
+All of our services are based on Ruuter. Whenever you want to make POST, GET or other requests, it's done via Ruuter. The same goes for if/else statements, creating and using templated services, etc. Ruuter also acts as a reverse proxy to mediate all traffic between any of the components. Go through the [guide](https://github.com/buerokratt/Ruuter/blob/main/samples/GUIDE.md) and definitely create your own [Ruuter-based mock services](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) to get the first grip of it.
 
 #### Resql | Bükstack
 
