@@ -33,7 +33,7 @@ All projects have a corresponding repo. To see the full list of them, go to http
 
 As a partner, first send us your GitHub account name so we could give you appropriate permissions.
 
-**Project manageres** do not have permissions to create, edit or delete project issues or their status. This is done by Bürokratt's core team to prevent unwanted results due to miscommunication, etc.
+**Project managers** do not have permissions to create, edit or delete project issues or their status. This is done by Bürokratt's core team to prevent unwanted results due to miscommunication, etc.
 
 **Developers** (but also project managers) have a "Triage" permission level. You can [read more about it from here](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization) but in short, this means that you first need to first fork the repo you are / will be working on, and commit your code through pull requests.
 
