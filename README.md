@@ -69,6 +69,10 @@ https://github.com/buerokratt/cvi
 
 CVI is new to us but will be used a lot from now on. It's a fork of https://github.com/e-gov/cvi - also a very new initiative. Long story short - all of our GUI/front-end re-usable React componentes will end up there and will get committed back to the original project.
 
+#### PostgreSQL
+
+We use PostgreSQL as a relational database. [See here](https://github.com/buerokratt/Third-party-components/tree/main/Postgres) for a quick setup.
+
 #### Liquibase
 
 We use https://www.liquibase.org to manage our database schema changes. Sample on setting up initial databases and running Liquibase can be found from https://github.com/buerokratt/Installation-Guides/blob/main/DB_installation.md, some of the sample Liquibase DSLs from https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL.Liquibase.
