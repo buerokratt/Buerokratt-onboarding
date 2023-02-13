@@ -21,6 +21,22 @@ We switched from relying on a small number of partners **to having a wide range 
 
 ## If you want to participate as a developer
 
+### GitHub
+
+#### References
+
+All of Bürokratt's projects can be found from https://github.com/orgs/buerokratt/projects.
+
+All projects have a corresponding repo. To see the full list of them, go to https://github.com/orgs/buerokratt/repositories.
+
+#### Permissions
+
+As a partner, first send us your GitHub account name so we could give you appropriate permissions.
+
+**Project manageres** do not have permissions to create, edit or delete project issues or their status. This is done by Bürokratt's core team to prevent unwanted results due to miscommunication, etc.
+
+**Developers** (but also project managers) have a "Triage" permission level. You can [read more about it from here](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization) but in short, this means that you first need to first fork the repo you are / will be working on, and commit your code through pull requests.
+
 ### Mock-services
 
 We encourage you to first set up the full flow of planned services as mocks by using [Ruuter mocks](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) or https://mswjs.io for it.
