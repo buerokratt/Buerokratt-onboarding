@@ -2,6 +2,7 @@
 #### Tutorial on how to create and find SSH key 
 
 ##### SSH key generating: Linux and MacOSX
+##### Note: Generating your SSH key, do not use `sudo` 
 
 ##### Create the key
 Navigate to your SSH folder under your home folder
