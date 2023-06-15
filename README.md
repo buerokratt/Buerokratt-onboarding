@@ -21,6 +21,12 @@ We switched from relying on a small number of partners **to having a wide range 
 
 ## If you want to participate as a developer
 
+### Architecture
+
+A high-level overview of Bürokratt architecture can be found at https://koodivaramu.eesti.ee/buerokratt/architecture/buerokratt-high-level.
+
+A couple of flows to look at are [chat flow](https://koodivaramu.eesti.ee/buerokratt/architecture/buerokratt-high-level/-/blob/master/buerokratt_chat_flow.png) and [input processing](https://koodivaramu.eesti.ee/buerokratt/architecture/buerokratt-high-level/-/blob/master/buerokratt_input_processing.png).
+
 ### GitHub
 
 #### References
