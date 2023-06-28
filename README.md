@@ -73,6 +73,8 @@ https://github.com/buerokratt/Resql
 
 Resql is used for all of our [Postgres](https://www.postgresql.org/) requests. Every single database query lies in a separate `.sql` file and is consumable as a REST endpoint. You can take a look at [some of our chatbot-related database queries from here](https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL.Resql).
 
+> PS! Using `UPDATE` and `DELETE` in SQL queries is forbidden throughout all of our projects! Every action must leave a record in a database table.
+
 #### DataMapper
 
 https://github.com/buerokratt/DataMapper
