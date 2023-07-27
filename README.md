@@ -75,7 +75,7 @@ Resql is used for all of our [Postgres](https://www.postgresql.org/) requests. E
 
 > PS! Using `UPDATE` and `DELETE` in SQL queries is forbidden throughout all of our projects! Every action must leave a record in a database table.
 
-#### DataMapper
+#### DataMapper | Bükstack
 
 https://github.com/buerokratt/DataMapper
 
