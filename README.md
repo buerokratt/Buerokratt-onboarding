@@ -43,6 +43,10 @@ As a partner, first send us your GitHub account name so we could give you approp
 
 **Developers** (but also project managers) have a "Triage" permission level. You can [read more about it from here](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization) but in short, this means that you first need to first fork the repo you are / will be working on, and commit your code through pull requests.
 
+#### Commits
+
+We require daily commits. If you're not done yet, use _draft pull requests_ to keep everyone up-to-date with your work. Also, every commit has to be linked with its parent issue - pull requests covering different issues are not allowed.
+
 ### Mock-services
 
 We encourage you to first set up the full flow of planned services as mocks by using [Ruuter mocks](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) or https://mswjs.io for it.
