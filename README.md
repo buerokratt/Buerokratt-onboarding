@@ -89,7 +89,7 @@ DataMapper (you can also find it under the name of DMapper from here and there) 
 
 https://github.com/buerokratt/TIM
 
-TIM is an acronym for "[TARA](https://www.ria.ee/en/state-information-system/electronic-identity-eid-and-trust-services/central-authentication-services) Integration Module", making it possible to start using TARA-based authentication by just updating your configuration file. TIM also provides functionality to create and use N number of custom [JWTs](https://en.wikipedia.org/wiki/JSON_Web_Token). PS! The source code of TIM is outdated and will be refactored in 2023 Q1/Q2.
+TIM is an acronym for "[TARA](https://www.ria.ee/en/state-information-system/electronic-identity-eid-and-trust-services/central-authentication-services) Integration Module", making it possible to start using TARA-based authentication by just updating your configuration file. TIM also provides functionality to create and use N number of custom [JWTs](https://en.wikipedia.org/wiki/JSON_Web_Token).
 
 #### CVI
 
