@@ -135,7 +135,7 @@ We are well-prepared to deploy Bürokratt on [Estonian Government Cloud](https:/
 
 ### Bürokratt as SaaS
 
-We are actively working on making Bürokratt available as SaaS on [Estonian Government Cloud](https://riigipilv.ee/en). Any of Estonian public sector institutions should be able to start and stop using Bürokratt as a pre-configured SaaS Q2 2023.
+We are actively working on making Bürokratt available as SaaS on [Estonian Government Cloud](https://riigipilv.ee/en). Any of Estonian public sector institutions should be able to start and stop using Bürokratt as a pre-configured SaaS Q1 2024.
 
 ### Bürokratt on-site
 
@@ -153,7 +153,7 @@ We currently have support for deploying Bürokratt as Docker services. You can f
 
 ### Kubernetes
 
-Due to some issues regarding to the training module, we don't currently support Kubernetes version of Bürokratt. This should change by Q2 2023 the latest.
+Due to some issues regarding to the training module, we don't currently support Kubernetes version of Bürokratt. This should change by Q1 2024 the latest.
 
 ### Contact
 
