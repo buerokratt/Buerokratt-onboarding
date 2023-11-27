@@ -35,6 +35,10 @@ All of Bürokratt's projects can be found from https://github.com/orgs/buerokrat
 
 All projects have a corresponding repo. To see the full list of them, go to https://github.com/orgs/buerokratt/repositories.
 
+#### Pull requests
+
+All pull requests of Bürokratt can be found from https://github.com/pulls?user=buerokratt
+
 #### Permissions
 
 As a partner, first send us your GitHub account name so we could give you appropriate permissions.
