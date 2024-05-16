@@ -53,7 +53,7 @@ We require daily commits. If you're not done yet, use _draft pull requests_ to k
 
 ### Mock-services
 
-We encourage you to first set up the full flow of planned services as mocks by using [Ruuter mocks](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) or https://mswjs.io for it.
+We encourage you to first set up the full flow of planned services as mocks by using [Ruuter mocks](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) for it.
 
 ### Warranty and responsibilities
 
