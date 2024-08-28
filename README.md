@@ -6,6 +6,14 @@ Bürokratt is an initiative by the [Ministry of Economics Affairs and Communicat
 
 Technical implementation of Bürokratt is provided by the Department of Machine Learning and Language Technology of [Information System Authority of Estonia](https://www.ria.ee/).
 
+Recording from last Bürokratt Information day (07.08.2024) can be seen [here](https://www.youtube.com/watch?v=u_HXF-Rnuac)
+
+[Slides about Bürokratt 2.0](https://github.com/buerokratt/Buerokratt-onboarding/blob/main/Bu%CC%88rokrati%20infopa%CC%88ev%20-%20Bu%CC%88rokratt%202.0.pdf)
+
+[Sildes about services](https://github.com/buerokratt/Buerokratt-onboarding/blob/main/Bu%CC%88rokrati%20infopa%CC%88ev%20-%20Bu%CC%88rokrati%20teenused.pdf)
+
+[Slides about language technology and roadmap](https://github.com/buerokratt/Buerokratt-onboarding/blob/main/Bu%CC%88rokrati%20infopa%CC%88ev%20-%20keeletehnoloogia%20ja%20Bu%CC%88rokrati%20teekaart.pdf)
+
 
 ## How we develop Bürokratt
 
