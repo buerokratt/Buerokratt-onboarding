@@ -1,0 +1,14 @@
+{
+  "version": "1.1.0",
+  "devDependencies": {
+    "husky": "^9.1.6"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "changelog": "./generate-changelog.sh",
+    "sync-version": "./sync-version.sh",
+    "bump-patch": "./bump-version.sh patch",
+    "bump-minor": "./bump-version.sh minor",
+    "bump-major": "./bump-version.sh major"
+  }
+}
