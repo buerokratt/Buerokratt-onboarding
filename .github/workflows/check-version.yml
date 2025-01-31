@@ -1,0 +1,73 @@
+name: Check Version
+
+on:
+  push:
+    branches: ["test", "stage", "main"]
+  workflow_dispatch:
+
+env:
+  BRANCH: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Docker Setup BuildX
+        uses: docker/setup-buildx-action@v2
+
+      - name: Bump Patch Version
+        run: npm run bump-patch
+        if: ${{ env.BRANCH == 'test' }}
+
+      - name: Sync Version
+        run: npm run sync-version
+        if: ${{ env.BRANCH != 'test' }}
+
+      - name: Generate Changelog
+        run: npm run changelog
+
+      - name: Push changes to repo
+        run: |
+          git config --global user.name ${{ secrets.ADMIN_NAME }}
+          git config --global user.email ${{ secrets.ADMIN_EMAIL }}
+          git add .
+          git commit -m "docs: update version"
+          git push
+
+      - name: Load environment variables
+        run: |
+          awk -v branch="${{ env.BRANCH }}" ' /^[0-9a-zA-Z]+$/ { current_branch = $0; } current_branch == branch && /^[A-Z_]+=/{ print $0; }' release.env >> $GITHUB_ENV
+
+      - name: Set repo
+        run: |
+           LOWER_CASE_GITHUB_REPOSITORY=$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')
+           echo "DOCKER_TAG_CUSTOM=ghcr.io/${LOWER_CASE_GITHUB_REPOSITORY}:v${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}" >> $GITHUB_ENV
+           echo "$GITHUB_ENV"
+      
+      - name: Build Docker image
+        run: |
+          echo "Building Docker image for branch: ${{ env.BRANCH }} major: ${{ env.MAJOR }} minor: ${{ env.MINOR }} patch: ${{ env.PATCH }}"
+          docker image build --tag $DOCKER_TAG_CUSTOM --no-cache .
+        if: ${{ env.BRANCH == 'test' }}
+
+      - name: Log in to GitHub container registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Push Docker image to GitHub Packages
+        run: |
+          echo "Pushing Docker image to GitHub Packages"
+          docker push $DOCKER_TAG_CUSTOM
+        if: ${{ env.BRANCH == 'test' }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: ${{ env.BRANCH == 'main' }}
+        with:
+          tag_name: v${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}
+          generate_release_notes: true
+          body_path: ${{ github.workspace }}/CHANGELOG.md
