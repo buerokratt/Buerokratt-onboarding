@@ -1,0 +1,24 @@
+# !/bin/bash
+
+message="$(head -1 $1)"
+
+message_pattern="^(feat|fix|chore|docs|refactor|style|test)\([0-9]+\):\ .+$"
+
+if ! [[ $message =~ $message_pattern ]];
+then
+  echo "---"
+  echo "Violation of commit message format!"
+  echo "The commit message must follow the Conventional Commits standard:"
+  echo "[type(scope): description]"
+  echo "Example: feat(100): Implement automated pipeline for code commits"
+  echo "Accepted types: feat, fix, chore, docs, refactor, style, test"
+  echo "(1) feat: Added a new feature"
+  echo "(2) fix: Fixed a bug"
+  echo "(3) chore: Added changes that do not relate to a fix or feature and don't modify src or test files (for example updating dependencies)"
+  echo "(4) docs: Added updates to documentation such as a the README or other markdown files"
+  echo "(5) refactor: Refactored code that neither fixes a bug nor adds a feature"
+  echo "(6) style: Added Changes that do not affect the meaning of the code, likely related to code formatting such as white-space, missing semi-colons, and so on"
+  echo "(7) test: Included new or corrected previous tests"
+  echo "---"
+  exit 1
+fi
