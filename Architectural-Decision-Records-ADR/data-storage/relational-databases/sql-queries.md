@@ -174,3 +174,61 @@ WHERE status = 'inactive';
 - **Increased storage usage** since data cannot be modified or deleted directly.
 - **Requires application-level handling** for changes, such as versioned updates or soft deletes.
 - **May introduce additional complexity** in data retrieval when dealing with historical records.
+
+---
+
+# SQL-005: Prohibition of Cross-Table Joins and Enforced Separation of Database Tables
+
+## Context
+Allowing cross-table joins can introduce performance bottlenecks, unintended dependencies, and challenges in scaling database operations. Additionally, enforcing clear separation of database tables ensures structured data management and prevents unnecessary entanglement of unrelated datasets. Queries should retrieve full, meaningful results directly from individual tables without relying on database-level joins for aggregation.
+
+## Decision
+- **Each database table must be designed for a specific purpose** and store all necessary data for its function.
+- **Cross-table joins are strictly prohibited.** Queries must not perform `JOIN` operations between multiple tables.
+- **Tables must be structured to return complete, meaningful results on their own**, minimizing the need for additional processing.
+- **Application-level data merging is allowed but should be kept minimal.** The intended approach is to retrieve **full results from applicable database tables** instead of assembling fragmented data at the application level.
+- **Denormalization must be applied** to ensure that queries do not depend on external tables for execution.
+
+### Example
+
+#### Prohibited (Cross-Table Join Query)
+```sql
+SELECT customers.id, customers.name, orders.total_price
+FROM customers
+JOIN orders ON customers.id = orders.customer_id
+WHERE customers.status = 'active';
+```
+
+#### Preferred (Separate Tables With Self-Contained Data)
+```sql
+SELECT id, name, status
+FROM customers
+WHERE status = 'active';
+
+SELECT customer_id, total_price
+FROM orders;
+```
+
+#### Allowed (Minimal Application-Level Data Merging)
+Instead of joining in SQL, fetch relevant data from each table separately and merge only when necessary:
+```sql
+customers = db.execute("SELECT id, name FROM customers WHERE status = 'active'")
+orders = db.execute("SELECT customer_id, total_price FROM orders WHERE customer_id IN (:customer_ids)")
+
+# Merge only if absolutely necessary
+customer_orders = merge_data(customers, orders)
+```
+
+## Consequences
+
+### Positive Outcomes
+- **Ensures database tables remain independent and purpose-driven,** avoiding complex dependencies.
+- **Eliminates expensive join operations,** improving query performance and reducing execution time.
+- **Enhances scalability,** allowing distributed database design without cross-table constraints.
+- **Encourages structured data retrieval,** ensuring that each table provides full results on its own.
+- **Minimizes application-level data merging,** reducing processing overhead.
+
+### Potential Trade-offs
+- **Requires careful database design** to ensure tables store all necessary data independently.
+- **Increases data redundancy** in favor of performance and maintainability.
+- **Application logic must be optimized** to handle minimal but necessary data merging when required.
