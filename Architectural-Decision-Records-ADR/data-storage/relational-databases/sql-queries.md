@@ -34,3 +34,50 @@ ORDER BY name;
 
 ### Potential Trade-offs
 - Some existing queries **may need reformatting.**
+
+---
+
+# SQL-002: Execution Expectation Comments for SQL Queries
+
+## Context
+Providing metadata comments for execution expectations ensures clarity regarding the expected performance and behavior of SQL queries. These comments serve as documentation for developers, aiding in performance monitoring, troubleshooting, and optimization. By explicitly defining execution expectations, we improve transparency, accountability, and collaboration in database query development.
+
+## Decision
+1. **Every `.sql` file must include metadata comments** specifying execution expectations.
+2. **Metadata comments must be placed at the top of each SQL file**.
+3. **Required metadata fields:**
+<br>&emsp;3.1. **Expected Runtime** – The anticipated average runtime for the query under normal conditions.
+<br>&emsp;3.2. **Expected Input Size** – The estimated size of data inputs for which the query is optimized.
+<br>&emsp;3.3. **Performance Constraints** – Any known limitations or considerations.
+
+### **Example: Execution Expectation Comments in SQL Queries**
+
+#### Avoid (Missing Execution Metadata)
+
+```sql
+SELECT id, name  
+FROM customers  
+WHERE status = :status_param;
+```
+
+#### **Use (Including Execution Metadata)**
+```sql
+-- Expected Runtime: < 100ms
+-- Expected Input Size: Up to 10,000 rows
+-- Performance Constraints: Optimized for indexed fields only
+
+SELECT id, name
+FROM customers
+WHERE status = :status_param;
+```
+
+## Consequences
+
+### Positive Outcomes
+- **Improves readability** by maintaining a structured and predictable format.
+- **Reduces review time** by ensuring queries follow a consistent style.
+- **Prevents syntax errors** caused by misaligned or unclear formatting.
+- **Facilitates collaboration,** making it easier for developers to read and modify SQL code.
+
+### Potential Trade-offs
+- Existing queries **may need reformatting.**
