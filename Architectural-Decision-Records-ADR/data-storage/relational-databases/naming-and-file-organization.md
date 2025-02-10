@@ -33,6 +33,7 @@ To ensure modularity, maintainability, and ease of navigation, all database quer
    ```
 
 ## Consequences
+
 ### Positive Outcomes
 - **Improves organization** by keeping queries modular and easy to find.
 - **Simplifies maintenance,** making it easier to track and modify queries.
@@ -42,9 +43,6 @@ To ensure modularity, maintainability, and ease of navigation, all database quer
 ### Potential Trade-offs
 - **Enforces strict file management,** requiring developers to adhere to the folder structure.
 - **Slightly more overhead in setup,** but provides long-term benefits in maintainability.
-
-## Status
-✅ **Approved** – This convention is now **mandatory** for all future database queries.
 
 ---
 
@@ -62,7 +60,7 @@ All SQL queries must adhere to the following naming convention, aligning with RE
 1. **Updating an existing record** → `update_{resource}` (PUT)  
 1. **Deleting a record** → `delete_{resource}` (DELETE)  
 
-### Example for LLM training data:  
+**Example for LLM training data**
 1. `list_llm_training (GET)` → Retrieves all LLM training records.  
 1. `get_llm_training (GET)` → Retrieves a single LLM training record.  
 1. `create_llm_training (POST)` → Inserts a new LLM training record.  
@@ -75,6 +73,7 @@ All SQL queries must adhere to the following naming convention, aligning with RE
 1. Avoid abbreviations unless widely recognized (`llm_training` instead of `lt`).  
 
 ## Consequences
+
 ### Positive Outcomes
 - **Enhances readability** and **maintainability** of SQL queries.  
 - **Ensures uniformity** across all database operations.  
@@ -84,6 +83,3 @@ All SQL queries must adhere to the following naming convention, aligning with RE
 ### Potential Trade-offs:
 - **Requires strict adherence** to the policy, which may necessitate training for new developers.  
 - **Might require some refactoring** for legacy queries that do not follow this standard.  
-
-## Status
-✅ **Approved** – This convention is now **mandatory** for all future database queries.
