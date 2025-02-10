@@ -121,3 +121,56 @@ WHERE status = :status_param;
 ### Potential Trade-offs
 - **Requires careful query design** to ensure all required fields are explicitly selected.
 - **Query needs to be updated** if new columns are needed.
+
+---
+
+# SQL-004: Restriction on Allowed SQL Query Types
+
+## Context
+Restricting the types of SQL queries that can be executed ensures better control, maintainability, and security within the system. Allowing only non-destructive queries enforces a read-and-append model, reducing the risk of data corruption, accidental deletions, or unauthorized modifications.
+
+## Decision
+- **Only `INSERT` and `SELECT` queries are allowed.**
+- **All other query types** (e.g., `UPDATE`, `DELETE`, `DROP`, `ALTER`) **are strictly prohibited.**
+- **Data modifications must be handled through alternative mechanisms**, such as versioned inserts or soft deletes.
+
+### Example
+
+#### Allowed (`SELECT` Query)
+```sql
+SELECT id, name, email
+FROM customers
+WHERE status = :status_param;
+```
+
+#### Allowed (`INSERT` Query)
+```sql
+INSERT INTO customers (id, name, email, status)
+VALUES (:id_param, :name_param, :email_param, :status_param);
+```
+
+#### Prohibited (`UPDATE` Query)
+```sql
+UPDATE customers
+SET status = 'inactive'
+WHERE id = :id_param;
+```
+
+#### Prohibited (`UPDATE` Query)
+```sql
+DELETE FROM customers
+WHERE status = 'inactive';
+```
+
+## Consequences
+
+### Positive Outcomes
+- **Ensures data integrity** by disallowing destructive operations.
+- **Simplifies auditing and monitoring,** as data is never modified or deleted.
+- **Promotes a read-and-append model,** making historical data fully traceable.
+- **Reduces risk of accidental data loss,** enforcing a more controlled approach to data changes.
+
+### Potential Trade-offs
+- **Increased storage usage** since data cannot be modified or deleted directly.
+- **Requires application-level handling** for changes, such as versioned updates or soft deletes.
+- **May introduce additional complexity** in data retrieval when dealing with historical records.
