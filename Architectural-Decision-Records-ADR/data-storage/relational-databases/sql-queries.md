@@ -50,7 +50,7 @@ Providing metadata comments for execution expectations ensures clarity regarding
 <br>&emsp;3.2. **Expected Input Size** – The estimated size of data inputs for which the query is optimized.
 <br>&emsp;3.3. **Performance Constraints** – Any known limitations or considerations.
 
-### **Example: Execution Expectation Comments in SQL Queries**
+### Example
 
 #### Avoid (Missing Execution Metadata)
 
@@ -81,3 +81,43 @@ WHERE status = :status_param;
 
 ### Potential Trade-offs
 - Existing queries **may need reformatting.**
+
+---
+
+# SQL-003: Prohibition of `SELECT *` in SQL Queries
+
+## Context
+Using `SELECT *` in SQL queries can lead to inefficiencies, unintended data exposure, and maintainability issues. Fetching all columns from a table may cause performance bottlenecks, especially when dealing with large datasets. Additionally, queries that rely on `SELECT *` are more prone to breaking if schema changes introduce new columns. By explicitly specifying required columns, queries remain clear, predictable, and optimized.
+
+## Decision
+- **`SELECT *` is strictly prohibited** in all SQL queries.
+- **All retrieved columns must be explicitly listed** in the query.
+- **Queries must be optimized to fetch only the necessary fields**, avoiding unnecessary data retrieval.
+
+### Example
+
+#### **Avoid (`SELECT *` Fetches All Columns)**
+```sql
+SELECT *
+FROM customers
+WHERE status = :status_param;
+```
+
+#### Use (Explicit Column Selection)
+```sql
+SELECT id, name, email
+FROM customers
+WHERE status = :status_param;
+```
+
+## Consequences
+
+### Positive Outcomes
+- **Reduces ambiguity** in query results, making queries more predictable.
+- **Improves performance** by retrieving only the necessary data, reducing memory and I/O load.
+- **Enhances maintainability,** ensuring queries remain stable even when table structures change.
+- **Minimizes risk of unintended data exposure,** as only explicitly required columns are fetched.
+
+### Potential Trade-offs
+- **Requires careful query design** to ensure all required fields are explicitly selected.
+- **Query needs to be updated** if new columns are needed.
