@@ -1,0 +1,48 @@
+# TESTING-001: Enforce Automated Validation of SQL Queries with Linting Tools
+
+## Context
+Ensuring SQL query correctness, readability, and maintainability is crucial for database integrity and system performance. Manual validation is error-prone and inconsistent, leading to issues such as syntax errors, inefficient queries, and non-standard formatting. Using automated linting tools for SQL validation helps enforce best practices, prevent mistakes, and maintain code consistency across all queries.
+
+## Decision
+1. **All SQL queries must be validated using an automated SQL linting tool** (e.g., SQLFluff, sql-lint).
+2. **Linting must be enforced in the CI/CD pipeline**, preventing poorly formatted or invalid queries from being merged.
+3. **Rules must cover**
+<br>&emsp;3.1. **Syntax validation** – Prevent SQL syntax errors before execution.
+<br>&emsp;3.1. **Formatting enforcement** – Ensure queries follow the defined style guide.
+<br>&emsp;3.1. **Best practice adherence** – Catch inefficient queries and anti-patterns (e.g., `SELECT *`).
+<br>&emsp;3.1. **Naming conventions** – Enforce `snake_case` for table and column names.
+4. **Developers must run linting locally** before committing SQL changes.
+
+### Example
+
+_Based on using SQLFluff_
+
+#### **Configuration (`.sqlfluff`)**
+```ini
+[sqlfluff]
+dialect = postgres
+rules = L010,L011,L039
+```
+
+#### Linting a SQL file
+```bash
+sqlfluff lint queries.sql
+```
+
+#### Fixing formatting issues automatically
+```bash
+sqlfluff fix queries.sql
+```
+
+## Consequences
+
+### Positive Outcomes
+- **Prevents syntax errors** before execution, reducing debugging time.
+- **Ensures consistency** across all queries, improving readability and maintainability.
+- **Enhances query performance** by enforcing best practices.
+- **Automates validation,** reducing human error in SQL reviews.
+
+### Potential Trade-offs
+- **Requires initial setup** and developer adoption.
+- **Linting rules must be periodically updated** to match evolving best practices.
+- **Might require exceptions** for complex queries that don’t conform to standard rules.
