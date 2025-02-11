@@ -1,3 +1,5 @@
-### 1.1.2 (11, Feb 2025)
+### 1.1.3 (11, Feb 2025)
+## Features
+- **212**: Implement version control, move slides to appropriate folders, initial commit for data storage ADRTest (#18) by [<u>@Rainer Türner</u>](https://www.github.com/RainerTürner) in [#ec17a6f](https://github.com/buerokratt/Buerokratt-onboarding/commit/ec17a6f)
 ## Others
-- Update check-version.yml by [<u>@jaX10bt</u>](https://www.github.com/jaX10bt) in [#2382e4a](https://github.com/buerokratt/Buerokratt-onboarding/commit/2382e4a)
+- docs: update version by [<u>@GitHub</u>](https://www.github.com/GitHub) in [#6246223](https://github.com/buerokratt/Buerokratt-onboarding/commit/6246223)
