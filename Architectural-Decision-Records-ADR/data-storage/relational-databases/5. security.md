@@ -14,7 +14,17 @@ To ensure secure query execution and facilitate the generation of OpenAPI specif
 <br>&emsp;1.2. Expected input parameters, including data types.
 <br>&emsp;1.3. Expected output fields, including data types.
 
-**Example SQL File with Security Declarations**
+## Example
+
+### Avoid (Missing Security Declarations)
+
+```sql
+SELECT id, name, email, created_at
+FROM users
+WHERE id = :user_id;
+```
+
+### Use (SQL File with Security Declarations)
 
 ```sql
 /*  

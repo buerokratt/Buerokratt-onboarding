@@ -13,7 +13,7 @@ To enforce **better database organization, security, and maintainability**, all 
 1. **Schemas must be explicitly referenced in queries** when necessary.  
 1. **Permissions must be granted at the schema level**, preventing unnecessary exposure.  
 
-## Example: Correct and Incorrect Schema Usage  
+## Example
 
 ### **Prohibited (Using the `public` Schema)**  
 ```sql
