@@ -1,4 +1,4 @@
-### 1.1.3 (11, Feb 2025)
+### 1.1.4 (19, Feb 2025)
 ## Features
 - **212**: Implement version control, move slides to appropriate folders, initial commit for data storage ADRTest (#18) by [<u>@Rainer Türner</u>](https://www.github.com/RainerTürner) in [#ec17a6f](https://github.com/buerokratt/Buerokratt-onboarding/commit/ec17a6f)
 ## Others
