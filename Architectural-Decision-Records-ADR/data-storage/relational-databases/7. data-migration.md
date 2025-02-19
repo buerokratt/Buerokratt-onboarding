@@ -14,7 +14,7 @@ To maintain **consistency and automation**, sample data insertions must be handl
 1. **Sample data must be non-sensitive** and should not include real-world confidential information.
 1. **Sample population must occur in a dedicated testing environment**, not in production.
 
-## Example: Correct and Incorrect Sample Data Handling
+## Example
 
 ### Forbidden (Hardcoded Sample Data in Schema Migration)
 ```sql
