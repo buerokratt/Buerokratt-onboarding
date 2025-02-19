@@ -1,3 +1,3 @@
-### 1.1.4 (19, Feb 2025)
+### 1.1.5 (19, Feb 2025)
 ## Others
-- Initial commit for Data Pipeline ADR by [<u>@Rainer Türner</u>](https://www.github.com/RainerTürner) in [#00deb85](https://github.com/buerokratt/Buerokratt-onboarding/commit/00deb85)
+- docs: update version by [<u>@GitHub</u>](https://www.github.com/GitHub) in [#87aaff5](https://github.com/buerokratt/Buerokratt-onboarding/commit/87aaff5)
