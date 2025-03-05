@@ -1,4 +1,4 @@
-### 1.1.9 (05, Mar 2025)
+### 1.1.10 (05, Mar 2025)
 ## Others
 - docs: update version by [<u>@GitHub</u>](https://www.github.com/GitHub) in [#efd1800](https://github.com/buerokratt/Buerokratt-onboarding/commit/efd1800)
 - Merge branch 'main' into stage by [<u>@Rainer Türner</u>](https://www.github.com/RainerTürner) in [#0f91e82](https://github.com/buerokratt/Buerokratt-onboarding/commit/0f91e82)
