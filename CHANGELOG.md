@@ -1,4 +1,4 @@
-### 1.1.11 (05, Mar 2025)
+### 1.1.12 (05, Mar 2025)
 ## Others
 - docs: update version by [<u>@GitHub</u>](https://www.github.com/GitHub) in [#4632c48](https://github.com/buerokratt/Buerokratt-onboarding/commit/4632c48)
 - Merge branch 'main' into stage by [<u>@Rainer Türner</u>](https://www.github.com/RainerTürner) in [#eb865bb](https://github.com/buerokratt/Buerokratt-onboarding/commit/eb865bb)
