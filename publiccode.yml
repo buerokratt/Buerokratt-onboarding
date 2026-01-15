@@ -1,13 +1,9 @@
-# This repository adheres to the publiccode.yml standard by including this 
-# metadata file that makes public software easily discoverable.
-# More info at https://github.com/italia/publiccode.yml
-
-publiccodeYmlVersion: '0.2'
+publiccodeYmlVersion: "0"
 name: Bürokratt
-url: 'https://github.com/buerokratt/Buerokratt-onboarding'
-roadmap: 'https://www.kratid.ee/en/burokratt'
-releaseDate: '2025-12-08'
-softwareVersion: '3.0'
+url: "https://github.com/buerokratt/Buerokratt-onboarding"
+roadmap: "https://www.kratid.ee/en/burokratt"
+releaseDate: "2025-12-08"
+softwareVersion: "3.0"
 developmentStatus: stable
 softwareType: standalone/web
 platforms:
@@ -17,15 +13,16 @@ categories:
   - instant-messaging
   - help-desk
 logo: >-
-  https://github.com/buerokratt/Buerokratt-Chatbot/blob/main/GUI/src/assets/logo.svg
+  https://raw.githubusercontent.com/buerokratt/Buerokratt-Chatbot/refs/heads/main/GUI/src/assets/logo.svg
 maintenance:
   type: internal
+  contacts:
+    - name: Rasmus Eimla
 legal:
   license: MIT
-  repoOwner: Rasmus Eimla
 intendedAudience:
   countries:
-    - ee
+    - EE
   scope:
     - agriculture
     - culture
@@ -55,16 +52,9 @@ localisation:
   localisationReady: true
   availableLanguages:
     - ee
-it:
-  conforme:
-    gdpr: true
-    lineeGuidaDesign: true
-    misureMinimeSicurezza: true
-  piattaforme:
-    cie: true
 description:
-  it:
-    documentation: 'https://github.com/buerokratt/Buerokratt-onboarding'
+  en:
+    documentation: "https://github.com/buerokratt/Buerokratt-onboarding"
     longDescription: >
       **What is Bürokratt today? **
 
@@ -74,9 +64,6 @@ description:
       Bürokratt offers institutions the ability to use large language models
       (LLMs) to understand human-language input and respond to questions
       quickly, referentially, and around the clock.
-
-
-      ​
 
 
       **Who is Bürokratt for?**
@@ -90,9 +77,6 @@ description:
       providing customer support.
 
 
-      ​
-
-
       **Vision of Bürokratt**
 
 
@@ -103,16 +87,12 @@ description:
       solve problems, and consume digital services directly from the chat
       window, without navigating complex portals or filling out forms.
 
-
-      ​
-
-
       As this vision is realized, institutions will be able to integrate virtual
       assistants into the network — independent AI agents that cooperate with
       each other, which, based on a person’s requests, find necessary
       information and carry out required actions (e.g. submitting an inquiry,
       application, or booking). In the future, these assistants will be able to
-      offer people seamless and personalized service.  
+      offer people seamless and personalized service.
     shortDescription: >-
       Bürokratt enables citizens or users to use public and information services
       with virtual assistants through chat interface.
@@ -124,5 +104,4 @@ description:
       - RAG
       - anonymizer
       - chat
-      - redirecting chat to a customer agent representitive
-    genericName: Bürokratt
+      - redirecting chat to a customer agent representative
