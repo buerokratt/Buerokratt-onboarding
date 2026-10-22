@@ -67,3 +67,8 @@ Out of scope for this diagram: X-Road (XTR), the infrastructure layer (Kubernete
 More detail on individual modules: [LLM-Module architecture](https://github.com/buerokratt/LLM-Module/blob/main/docs/ARCHITECTURE.md), [Common-Knowledge architecture](https://github.com/buerokratt/Common-Knowledge/blob/main/ARCHITECTURE.md).
 
 Architectural decision records for CentOps, DMR and the data pipelines are in [Architectural-Decision-Records-ADR](../../Architectural-Decision-Records-ADR).
+
+
+## Delivery pipeline
+
+The architecture of the delivery pipeline, how Bürokratt software reaches the test, stage and prod clusters, is described in [Delivery pipeline](delivery/delivery.md).
