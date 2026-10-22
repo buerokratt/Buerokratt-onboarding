@@ -10,7 +10,7 @@ This design was agreed on 2026-10-19 and is being built. It replaces delivery wi
 
 ## Overview
 
-![Bürokratt delivery pipeline](img/delivery.drawio.svg)
+![Bürokratt delivery pipeline](../img/delivery.drawio.svg)
 
 **Management cluster.** Runs only the main Argo CD. It installs the central stack `central-<environment>` into every environment cluster from configuration in GitLab. It does not deploy installations.
 
