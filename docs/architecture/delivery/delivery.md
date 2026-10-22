@@ -2,7 +2,8 @@
 
 How Bürokratt software reaches the clusters where installations run. Component names match the [overview diagram](README.md#overview).
 
-This design was agreed on 2026-10-19 and is being built. It replaces delivery with `helm install` from local machines; the target clusters run RKE2.
+This design was agreed on 2026-10-19 and is being built. It replaces delivery with `helm install` from local machines.
+
 
 - [Overview](#overview)
 - [Components](#components)
