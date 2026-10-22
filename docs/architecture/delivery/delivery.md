@@ -14,11 +14,11 @@ This design was agreed on 2026-10-19 and is being built. It replaces delivery wi
 
 **Management cluster.** Runs only the main Argo CD. It installs the central stack `central-<environment>` into every environment cluster from configuration in GitLab. It does not deploy installations.
 
-**Environment clusters.** Test, stage and prod, each an RKE2 cluster. Every cluster has its own central stack (`central-test`, `central-stage`, `central-prod`). Each installation runs in its own namespace; the stage cluster has 14 (`byk-01` … `byk-14`).
+**Environment clusters.** Test, stage and prod, each an RKE2 cluster. Every cluster has its own central stack (`central-test`, `central-stage`, `central-prod`) and, outside it, a local Argo CD. Each installation runs in its own namespace; the stage cluster has 14 (`byk-01` … `byk-14`).
 
-**Isolation.** The local Argo CD takes instructions only from the CentOps in the same cluster and deploys only to that cluster (destination `in-cluster`). The test environment knows nothing about the prod cluster or its central stack. If the management cluster or one environment fails, the other environments keep running and keep deploying.
+**Isolation.** The local Argo CD takes instructions only from the CentOps endpoints in the same cluster and deploys only to that cluster (destination `in-cluster`). The test environment knows nothing about the prod cluster or its central stack. If the management cluster or one environment fails, the other environments keep running and keep deploying.
 
-**Rejected alternatives.** Everything in the management cluster; or the central stacks in the management cluster with one shared CentOps and Argo CD. Both make the management cluster a single point of failure for every environment.
+**Rejected alternatives.** Everything in the management cluster; or the central stacks in the management cluster with one shared Bükstack and Argo CD. Both make the management cluster a single point of failure for every environment.
 
 ### Editing the diagram
 
@@ -28,18 +28,14 @@ This design was agreed on 2026-10-19 and is being built. It replaces delivery wi
 
 | Component | Where | Role |
 |---|---|---|
-| GitLab | External | Helm charts of Bürokratt and the configuration of the central stack |
+| GitLab | External | Helm charts of Bürokratt, the configuration of the central stack, and config pipelines that expose the endpoints the pipeline needs (for example the CentOps endpoints) |
 | Main Argo CD | Management cluster | Installs and updates the central stack in each environment cluster |
-| CentOps | `central-<env>` | Tells the local Argo CD which installations to deploy, with which chart and values |
-| Local Argo CD | `central-<env>` | Renders the chart from GitLab and deploys it to the installation's namespace in the same cluster |
+| Local Argo CD | Environment cluster, outside `central-<env>` | Renders the chart from GitLab and deploys it to the installation's namespace in the same cluster |
 | Vault | `central-<env>` | Secrets of installations; read during rendering by argocd-vault-plugin |
-| Bükstack | `central-<env>` | Ruuter, Resql and TIM of the central stack |
-| PostgreSQL | `central-<env>` | Central database of the central stack |
+| Bükstack | `central-<env>` | Ruuter, Resql and the central PostgreSQL database. Ruuter exposes the CentOps endpoints that tell the local Argo CD which installations to deploy, with which chart and values |
 | DMR | `central-<env>` | DMR server for the installations of this environment |
 | OpenSearch | `central-<env>` | Search and logs for this environment |
 | Installation | `byk-NN` | One Bürokratt installation as described in the [overview](README.md#client-installation) |
-
-The CentOps endpoints the pipeline needs run in the central stack, on its Bükstack components and central database.
 
 ## How the pipeline runs
 
@@ -56,7 +52,7 @@ sequenceDiagram
 
   Main->>GitLab: Read central stack configuration
   Note over Main: ApplicationSet creates one Application per environment cluster
-  Main->>Central: Sync Vault, Bükstack, PostgreSQL, CentOps, local Argo CD, DMR, OpenSearch
+  Main->>Central: Sync Bükstack, Vault, DMR, OpenSearch
 ```
 
 1. The configuration of the central stack is kept in GitLab.
@@ -68,28 +64,28 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   autonumber
-  actor Op as Operator
-  participant CentOps as CentOps (central-stage)
-  participant Vault as Vault (central-stage)
-  participant Argo as Argo CD (central-stage)
   participant GitLab
+  participant Bykstack as Bükstack (central-stage)
+  participant Vault as Vault (central-stage)
+  participant Argo as Local Argo CD (stage cluster)
   participant NS as byk-01
 
-  Op->>CentOps: Installation: namespace, chart, branch, Helm values, secrets
-  CentOps->>Vault: Store secrets
-  Op->>CentOps: Deploy
-  CentOps->>Argo: Create or update the Application (Argo CD API)
+  GitLab->>Bykstack: Config pipeline exposes the endpoints the pipeline needs
+  Note over Bykstack: Installation: namespace, chart, branch, Helm values
+  Bykstack->>Vault: Store secrets
+  Bykstack->>Argo: Create or update the Application (Argo CD API)
   Argo->>GitLab: Fetch chart at branch
   Argo->>Vault: argocd-vault-plugin replaces placeholders with secret values
   Argo->>NS: Sync (in-cluster)
-  CentOps->>Argo: Read health and sync status
+  Bykstack->>Argo: Read health and sync status
 ```
 
 1. The Helm charts of Bürokratt are kept in GitLab.
-2. In the CentOps of the target cluster, an operator describes the installation: namespace, chart repository, path and branch, and the Helm values. Secrets go to Vault; the Helm values refer to them only as argocd-vault-plugin placeholders, so no secret value is stored in git or in CentOps.
-3. On Deploy, CentOps creates or updates one Argo CD Application for the installation in the local Argo CD.
-4. The local Argo CD fetches the chart from GitLab, argocd-vault-plugin fills in the secrets from Vault, and the chart is rendered.
-5. The local Argo CD applies the result to the installation's namespace in the same cluster. Sync is automated with prune and self-heal, so the namespace keeps matching what was rendered, and new commits on the chart branch are deployed without another Deploy.
-6. CentOps reads health and sync status back from the local Argo CD and shows it to the operator.
+2. GitLab config pipelines expose the endpoints the pipeline needs in the Bükstack of each central stack.
+3. Through these endpoints, the installation is described: namespace, chart repository, path and branch, and the Helm values. Secrets go to Vault; the Helm values refer to them only as argocd-vault-plugin placeholders, so no secret value is stored in git.
+4. On deploy, the endpoints create or update one Argo CD Application for the installation in the local Argo CD.
+5. The local Argo CD fetches the chart from GitLab, argocd-vault-plugin fills in the secrets from Vault, and the chart is rendered.
+6. The local Argo CD applies the result to the installation's namespace in the same cluster. Sync is automated with prune and self-heal, so the namespace keeps matching what was rendered, and new commits on the chart branch are deployed without another deploy.
+7. Health and sync status are read back from the local Argo CD through the same endpoints.
 
-A new version reaches an environment when its CentOps points the installation at a new chart branch or new values and deploys again. Each environment is deployed from its own CentOps; nothing is pushed from one environment to another.
+A new version reaches an environment when the installation is pointed at a new chart branch or new values through the endpoints of that environment and deployed again. Each environment is deployed from its own central stack; nothing is pushed from one environment to another.
