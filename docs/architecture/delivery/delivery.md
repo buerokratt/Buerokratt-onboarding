@@ -35,7 +35,7 @@ This design was agreed on 2026-10-19 and is being built. It replaces delivery wi
 | Bükstack | `central-<env>` | Ruuter, Resql and the central PostgreSQL database. Ruuter exposes the CentOps endpoints that tell the local Argo CD which installations to deploy, with which chart and values |
 | DMR | `central-<env>` | DMR server for the installations of this environment |
 | OpenSearch | `central-<env>` | Search and logs for this environment |
-| Installation | `byk-NN` | One Bürokratt installation as described in the [overview](README.md#client-installation) |
+| Installation | `byk-NN` | One Bürokratt installation as described in the [overview](../README.md#client-installation) |
 
 ## How the pipeline runs
 
