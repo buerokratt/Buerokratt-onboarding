@@ -2,8 +2,8 @@ publiccodeYmlVersion: "0"
 name: Bürokratt
 url: "https://github.com/buerokratt/Buerokratt-onboarding"
 roadmap: "https://www.kratid.ee/en/burokratt"
-releaseDate: "2026-03-06"
-softwareVersion: "3.2.0"
+releaseDate: "2026-09-25"
+softwareVersion: "3.3.3"
 developmentStatus: stable
 softwareType: standalone/web
 platforms:
