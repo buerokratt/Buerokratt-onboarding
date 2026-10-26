@@ -26,9 +26,14 @@ We switched from relying on a small number of partners **to having a wide range 
 
 ### Architecture
 
-A high-level overview of Bürokratt architecture can be found at https://koodivaramu.eesti.ee/buerokratt/architecture/buerokratt-high-level.
+![Bürokratt architecture overview](docs/architecture/img/overview.drawio.svg)
 
-A couple of flows to look at are [chat flow](https://koodivaramu.eesti.ee/buerokratt/architecture/buerokratt-high-level/-/blob/master/buerokratt_chat_flow.png) and [input processing](https://koodivaramu.eesti.ee/buerokratt/architecture/buerokratt-high-level/-/blob/master/buerokratt_input_processing.png).
+Each agency runs its own Bürokratt installation. CentOps, the DMR server and the Global-Classifier run centrally and connect the installations into the Bürokratt network.
+
+- [Architecture overview](docs/architecture/README.md): the diagram explained, with every component, its role and its repository
+- [Data journey](docs/architecture/data-journey.md): how a question gets its answer, inside one installation and across the network
+- [Implementation status](docs/architecture/implementation-status.md): where the code does not yet match the description
+- [Architectural decision records](Architectural-Decision-Records-ADR)
 
 ### GitHub
 
@@ -72,35 +77,39 @@ The first thing to understand is that we strongly believe in DSL-based developme
 
 ### Key repos and third-party components to focus on when onboarding
 
+Bükstack is modular. Each component does one job: Ruuter runs the steps of a service, Resql runs SQL queries, DataMapper reshapes data, TIM handles authentication. The business logic of a service lives in DSL files (YAML, SQL, Handlebars) that these components read. Adding a new service or a new step usually means adding DSL files, not changing component code, and a new capability can be added as a separate component that Ruuter calls.
+
+The links below point to the `main` branch of each repository. The [architecture overview](docs/architecture/README.md#components) lists every component with its role.
+
 #### Ruuter | Bükstack
 
-https://github.com/buerokratt/Ruuter
+https://github.com/buerokratt/Ruuter/tree/main
 
 All of our services are based on Ruuter. Whenever you want to make POST, GET or other requests, it's done via Ruuter. The same goes for if/else statements, creating and using templated services, etc. Ruuter also acts as a reverse proxy to mediate all traffic between any of the components. Go through the [guide](https://github.com/buerokratt/Ruuter/blob/main/samples/GUIDE.md) and definitely create your own [Ruuter-based mock services](https://github.com/buerokratt/Ruuter/blob/main/samples/steps/mock.md) to get the first grip of it.
 
 #### Resql | Bükstack
 
-https://github.com/buerokratt/Resql
+https://github.com/buerokratt/Resql/tree/main
 
-Resql is used for all of our [Postgres](https://www.postgresql.org/) requests. Every single database query lies in a separate `.sql` file and is consumable as a REST endpoint. You can take a look at [some of our chatbot-related database queries from here](https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL.Resql).
+Resql is used for all of our [Postgres](https://www.postgresql.org/) requests. Every single database query lies in a separate `.sql` file and is consumable as a REST endpoint. You can take a look at [some of our chatbot-related database queries from here](https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL/Resql).
 
 > PS! Using `UPDATE` and `DELETE` in SQL queries is forbidden throughout all of our projects! Every action must leave a record in a database table.
 
 #### DataMapper | Bükstack
 
-https://github.com/buerokratt/DataMapper
+https://github.com/buerokratt/DataMapper/tree/main
 
-DataMapper (you can also find it under the name of DMapper from here and there) is actually [https://handlebarsjs.com](https://handlebarsjs.com/) wrapped in Java. We will replace it with pure Handlebars on [Node.js](https://nodejs.org/en) soon. We use DataMapper to re-structure JSON outputs according to our needs. See some of our [currently in use DataMapper / Handlebars DSLs from here](https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL.DMapper).
+DataMapper (you can also find it under the name of DMapper from here and there) is a [Node.js](https://nodejs.org/en) service that renders [Handlebars](https://handlebarsjs.com/) templates. We use DataMapper to re-structure JSON outputs according to our needs. See some of our [currently in use DataMapper / Handlebars DSLs from here](https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL/DMapper).
 
 #### TIM | Bükstack
 
-https://github.com/buerokratt/TIM
+https://github.com/buerokratt/TIM/tree/main
 
 TIM is an acronym for "[TARA](https://www.ria.ee/en/state-information-system/electronic-identity-eid-and-trust-services/central-authentication-services) Integration Module", making it possible to start using TARA-based authentication by just updating your configuration file. TIM also provides functionality to create and use N number of custom [JWTs](https://en.wikipedia.org/wiki/JSON_Web_Token).
 
 #### CVI
 
-https://github.com/buerokratt/cvi
+https://github.com/buerokratt/cvi/tree/main
 
 CVI is new to us but will be used a lot from now on. It's a fork of https://github.com/e-gov/cvi - also a very new initiative. Long story short - all of our GUI/front-end re-usable React componentes will end up there and will get committed back to the original project.
 
@@ -110,7 +119,7 @@ We use PostgreSQL as a relational database. [See here](https://github.com/buerok
 
 #### Liquibase
 
-We use https://www.liquibase.org to manage our database schema changes. Sample on setting up initial databases and running Liquibase can be found from https://github.com/buerokratt/Installation-Guides/blob/main/DB_installation.md, some of the sample Liquibase DSLs from https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL.Liquibase.
+We use https://www.liquibase.org to manage our database schema changes. Each module keeps its Liquibase changelogs in `DSL/Liquibase` and runs them with `migrate.sh`; see [Buerokratt-Chatbot](https://github.com/buerokratt/Buerokratt-Chatbot/tree/main/DSL/Liquibase) for an example.
 
 #### OpenSearch
 
@@ -129,38 +138,25 @@ If you want to contact regarding to Bürokratt's **technical solutions,** contac
 
 ### Technical stack
 
-#### Rasa
+#### Rasa (legacy)
 
-We currently rely heavily on Rasa for building conversational rules, stories, and intent-based actions. However, starting from Q4 2025, we plan to make some changes:
+Bürokratt started on [Rasa](https://rasa.com/): intents, rules and stories decided how a conversation went. We have since moved to large language models. Rasa is no longer developed or supported in Bürokratt, and new installations do not use it.
 
-- We will likely replace Rasa's intent recognition with a more flexible approach, especially to support multi-intent recognition.
+#### Large language models
 
-- Rasa remains available for rules, stories, and custom actions on client request, but without official support.
+Answers now come from a large language model. To avoid lock-in to any one vendor, we develop the knowledge base and the LLM layer ourselves:
 
-#### LLM-based approach and Common Knowledge Base
+- [Common-Knowledge (CKB)](https://github.com/buerokratt/Common-Knowledge/tree/main) collects content from public websites and APIs that an agency points it to, cleans it, and keeps it up to date.
+- [LLM-Module](https://github.com/buerokratt/LLM-Module/tree/main) routes each question to the right workflow (retrieval-augmented generation over CKB content, a service call, an API tool, or a polite refusal) and generates the answer. It works with several LLM providers, such as Azure OpenAI, AWS Bedrock, OpenAI, Anthropic, Google Cloud and self-hosted models; an administrator switches the provider in configuration.
 
-Recently, we have started experimenting with a large language model (LLM) approach. As part of this, we have developed a Common Knowledge Base (CKB) project:
+See the [data journey](docs/architecture/data-journey.md) for how a question reaches the model and how the answer comes back.
 
-- Users can provide a webpage via a simple UI, which is then scraped and cleaned.
+#### Global-Classifier
 
-#### Global Classifier
+[Global-Classifier](https://github.com/buerokratt/Global-Classifier/tree/main) is a central component of the Bürokratt network:
 
-- The Global Classifier (GC) ingests this data and, with the help of an LLM, generates synthetic training data (questions related to the domain).
-
-- This synthetic data is then used to train domain-specific models, enabling more flexible and knowledge-driven intent recognition and question answering.
-
-#### BYK-RAG (Retrieval-Augmented Generation Module)
-
-The **BYK-RAG Module** is part of the Burokratt ecosystem and provides **retrieval-augmented generation (RAG)** capabilities:
-
-- It uses data scraped and cleaned via the Common Knowledge Base (CKB).
-
-- It integrates with multiple LLM providers to generate AI-powered responses that are reliable, multilingual, and compliant.
-
-- The module includes flexible configuration and monitoring features for administrators.
-
-**NB!**
-By the end of this year, we expect to offer a choice between continuing with Rasa but without support or moving to an LLM/RAG-based approach, depending on the requirements of each task.
+- It reads every agency's CKB data and, with the help of an LLM, generates synthetic training data (questions about each agency's domain).
+- It trains one model from that data and uses it to tell which agency's Bürokratt can answer a question that the local installation cannot.
 
 ### Contact
 
@@ -170,11 +166,13 @@ If you want to contact regarding to Bürokratt's language technology, contact me
 
 #### DMR
 
-The DMR project acts as a mediator for conversations between multiple clients. It ensures secure, reliable, and efficient message exchange across the network, allowing different client instances to interact seamlessly.
+[DMR](https://github.com/buerokratt/DMR/tree/main) (Distributed Message Rooms): the DMR project acts as a mediator for conversations between multiple clients. It ensures secure, reliable, and efficient message exchange across the network, allowing different client instances to interact seamlessly.
 
 #### CentOps
 
-CentOps is a central hub and orchestration tool for managing deployments across multiple Kubernetes clusters. While it is part of the Bürokratt ecosystem, it is designed as a standalone platform that can be used independently for managing any delivery pipeline. Depending on the architecture, additional clusters can be added — for example, development, testing, staging, and production — giving operations engineers full control over the deployment lifecycle and environment management.
+[CentOps](https://github.com/buerokratt/CentOps/tree/main) has two roles. It is the registry of the Bürokratt network: it records which agencies belong to the network, the download link and checksum of each agency's knowledge base, and API keys; the DMR server and the Global-Classifier read this information from it. It is also a central hub and orchestration tool for managing deployments across multiple Kubernetes clusters. While it is part of the Bürokratt ecosystem, it is designed as a standalone platform that can be used independently for managing any delivery pipeline. Depending on the architecture, additional clusters can be added — for example, development, testing, staging, and production — giving operations engineers full control over the deployment lifecycle and environment management.
+
+How a question moves from one agency to another over the network is described in the [data journey](docs/architecture/data-journey.md#2-another-agency-answers-the-bürokratt-network).
 
 ## If you want to start using Bürokratt as an institution
 
@@ -199,6 +197,8 @@ If you want to contact regarding to start using Bürokratt as an institution, co
 ### Kubernetes
 
 Bürokratt is fully deployable on Kubernetes, supporting all core functionalities.
+
+A new delivery pipeline is being added. It is designed to deliver Bürokratt both to AWS and to the [Estonian Government Cloud](https://riigipilv.ee/en). Its high-level architecture will be added to the [architecture documentation](docs/architecture/README.md) soon.
 
 ### Contact
 
